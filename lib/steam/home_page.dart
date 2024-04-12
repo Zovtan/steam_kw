@@ -14,7 +14,8 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   final String apiKey = "8dd0c74b4198460a836dc73d67c06351";
-  List<dynamic> games = [];
+  List<dynamic> featuredGames = [];
+  List<dynamic> specialOfferGames = [];
 
   bool _loading = false;
 
@@ -33,14 +34,30 @@ class _HomePageState extends State<HomePage> {
       final response = await http.get(
           Uri.parse("https://api.rawg.io/api/games?key=$apiKey"));
       if (response.statusCode == 200) {
+        final List<dynamic> games = json.decode(response.body)["results"];
+
+        // Clear existing lists
+        featuredGames.clear();
+        specialOfferGames.clear();
+
+        // Split games into two lists
+        for (int i = 0; i < games.length; i++) {
+          if (i % 2 == 0) {
+            featuredGames.add(games[i]);
+          } else {
+            specialOfferGames.add(games[i]);
+          }
+        }
+
+        // Add a random price for each game
+        featuredGames.forEach((game) {
+          game['price'] = generateRandomPrice();
+        });
+        specialOfferGames.forEach((game) {
+          game['price'] = generateRandomPrice();
+        });
+
         setState(() {
-          games.addAll(json.decode(response.body)["results"]);
-
-          // Add a random price for each game
-          games.forEach((game) {
-            game['price'] = generateRandomPrice();
-          });
-
           _loading = false;
         });
       } else {
@@ -60,9 +77,9 @@ class _HomePageState extends State<HomePage> {
             height: 200, // Adjust the height as needed
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
-              itemCount: games.length + 1,
+              itemCount: featuredGames.length + 1,
               itemBuilder: (BuildContext context, int index) {
-                if (index == games.length) {
+                if (index == featuredGames.length) {
                   if (_loading) {
                     return Center(
                       child: CircularProgressIndicator(),
@@ -71,7 +88,7 @@ class _HomePageState extends State<HomePage> {
                     return Container();
                   }
                 }
-                final game = games[index];
+                final game = featuredGames[index];
                 return Featured(
                   imageUrl: game['background_image'],
                   name: game['name'],
@@ -92,9 +109,9 @@ class _HomePageState extends State<HomePage> {
             height: 200, // Adjust the height as needed
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
-              itemCount: games.length + 1,
+              itemCount: specialOfferGames.length + 1,
               itemBuilder: (BuildContext context, int index) {
-                if (index == games.length) {
+                if (index == specialOfferGames.length) {
                   if (_loading) {
                     return Center(
                       child: CircularProgressIndicator(),
@@ -103,7 +120,7 @@ class _HomePageState extends State<HomePage> {
                     return Container();
                   }
                 }
-                final game = games[index];
+                final game = specialOfferGames[index];
                 return Special(
                   imageUrl: game['background_image'],
                   name: game['name'],
@@ -115,8 +132,7 @@ class _HomePageState extends State<HomePage> {
         ],
       ),
       // Bottom navigation bar
-      bottomNavigationBar: BottomNavBar(
-      ),
+      bottomNavigationBar: BottomNavBar(),
     );
   }
 }
