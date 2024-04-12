@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:steam_kw/steam/special.dart';
 import 'dart:convert';
-
 import 'app_bar.dart'; // Import the app_bar.dart file
 import '../util/random_price.dart'; // Import the price generator function
 import 'featured.dart'; // Import the Featured widget
@@ -85,6 +85,31 @@ Widget build(BuildContext context) {
           fit: BoxFit.cover,
           //width: double.infinity, // Take the full width of the screen
           //height: 150, // Adjust the height as needed
+        ),
+        //special offer
+        SizedBox(
+          height: 200, // Adjust the height as needed
+          child: ListView.builder(
+            scrollDirection: Axis.horizontal,
+            itemCount: games.length + 1,
+            itemBuilder: (BuildContext context, int index) {
+              if (index == games.length) {
+                if (_loading) {
+                  return Center(
+                    child: CircularProgressIndicator(),
+                  );
+                } else {
+                  return Container();
+                }
+              }
+              final game = games[index];
+              return Special(
+                imageUrl: game['background_image'],
+                name: game['name'],
+                originalPrice: game['price'],
+              );
+            },
+          ),
         ),
       ],
     ),
