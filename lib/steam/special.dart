@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../util/discount.dart';
 
 class Special extends StatelessWidget {
   final String imageUrl;
@@ -9,11 +10,8 @@ class Special extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Generate a random discount
-    double discountPercentage = (5 + 5 * (DateTime.now().microsecondsSinceEpoch % 18)) / 100; // Random discount between 5% to 90% in 5% leap
-
     // Calculate the discounted price
-    int discountedPrice = (originalPrice * (1 - discountPercentage)).round();
+    double discountedPrice = calculateDiscount(originalPrice);
 
     return Padding(
       padding: const EdgeInsets.all(8.0),
@@ -43,10 +41,8 @@ class Special extends StatelessWidget {
               'Original Price: $originalPrice', // Display the original price
               style: TextStyle(decoration: TextDecoration.lineThrough, color: Colors.grey),
             ),
-            Text("$discountPercentage", // Display the discounted price
-              style: TextStyle(color: Colors.green),),
             Text(
-              'Discounted Price: $discountedPrice', // Display the discounted price
+              'Discounted Price: ${discountedPrice.toStringAsFixed(2)}', // Display the discounted price
               style: TextStyle(color: Colors.green),
             ),
           ],
