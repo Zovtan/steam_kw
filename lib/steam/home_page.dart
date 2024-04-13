@@ -31,8 +31,8 @@ class _HomePageState extends State<HomePage> {
         _loading = true;
       });
 
-      final response = await http.get(
-          Uri.parse("https://api.rawg.io/api/games?key=$apiKey"));
+      final response = await http
+          .get(Uri.parse("https://api.rawg.io/api/games?key=$apiKey"));
       if (response.statusCode == 200) {
         final List<dynamic> games = json.decode(response.body)["results"];
 
@@ -69,67 +69,83 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color(0xFF1E3655),
       appBar: SteamAppBar(),
-      body: Column(
-        children: [
-          // Featured items
-          SizedBox(
-            height: 200, // Adjust the height as needed
-            child: ListView.builder(
-              scrollDirection: Axis.horizontal,
-              itemCount: featuredGames.length + 1,
-              itemBuilder: (BuildContext context, int index) {
-                if (index == featuredGames.length) {
-                  if (_loading) {
-                    return Center(
-                      child: CircularProgressIndicator(),
-                    );
-                  } else {
-                    return Container();
-                  }
-                }
-                final game = featuredGames[index];
-                return Featured(
-                  imageUrl: game['background_image'],
-                  name: game['name'],
-                  price: game['price'],
-                );
-              },
+      body: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment:
+              CrossAxisAlignment.start, // Align children to the start (left)
+          children: [
+            Image.asset(
+              'images/banner_square.png',
+              fit: BoxFit.cover,
+              width: double.infinity, // Take the full width of the screen
             ),
-          ),
-          // Image below featured items
-          Image.asset(
-            'images/banner.png', // Replace with your image URL
-            fit: BoxFit.cover,
-            //width: double.infinity, // Take the full width of the screen
-            //height: 150, // Adjust the height as needed
-          ),
-          //special offer
-          SizedBox(
-            height: 200, // Adjust the height as needed
-            child: ListView.builder(
-              scrollDirection: Axis.horizontal,
-              itemCount: specialOfferGames.length + 1,
-              itemBuilder: (BuildContext context, int index) {
-                if (index == specialOfferGames.length) {
-                  if (_loading) {
-                    return Center(
-                      child: CircularProgressIndicator(),
-                    );
-                  } else {
-                    return Container();
-                  }
-                }
-                final game = specialOfferGames[index];
-                return Special(
-                  imageUrl: game['background_image'],
-                  name: game['name'],
-                  originalPrice: game['price'],
-                );
-              },
+            const SizedBox(
+              height: 16,
             ),
-          ),
-        ],
+            const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 16.0),
+              child: Text("FEATURED & RECOMMENDED",
+                  style: TextStyle(color: Colors.white)),
+            ),
+            // Featured items
+            SizedBox(
+              height: 200, // Adjust the height as needed
+              child: ListView.builder(
+                scrollDirection: Axis.horizontal,
+                itemCount: featuredGames.length + 1,
+                itemBuilder: (BuildContext context, int index) {
+                  if (index == featuredGames.length) {
+                    if (_loading) {
+                      return const Center(
+                        child: CircularProgressIndicator(),
+                      );
+                    } else {
+                      return Container();
+                    }
+                  }
+                  final game = featuredGames[index];
+                  return Featured(
+                    imageUrl: game['background_image'],
+                    name: game['name'],
+                    price: game['price'],
+                  );
+                },
+              ),
+            ),
+            const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 16.0),
+              child:
+                  Text("SPECIAL OFFERS", style: TextStyle(color: Colors.white)),
+            ),
+            //special offer
+            SizedBox(
+              height: 250, // Adjust the height as needed
+              child: ListView.builder(
+                scrollDirection: Axis.horizontal,
+                itemCount: specialOfferGames.length + 1,
+                itemBuilder: (BuildContext context, int index) {
+                  if (index == specialOfferGames.length) {
+                    if (_loading) {
+                      return const Center(
+                        child: CircularProgressIndicator(),
+                      );
+                    } else {
+                      return Container();
+                    }
+                  }
+                  final game = specialOfferGames[index];
+                  return Special(
+                    imageUrl: game['background_image'],
+                    name: game['name'],
+                    originalPrice: game['price'],
+                  );
+                },
+              ),
+            ),
+          ],
+        ),
       ),
       // Bottom navigation bar
       bottomNavigationBar: BottomNavBar(),
