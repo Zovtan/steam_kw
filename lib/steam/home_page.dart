@@ -69,7 +69,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFF1E3655),
+      backgroundColor: Color.fromARGB(255, 32, 58, 92),
       appBar: SteamAppBar(),
       body: SingleChildScrollView(
         child: Column(
@@ -91,7 +91,7 @@ class _HomePageState extends State<HomePage> {
             ),
             // Featured items
             SizedBox(
-              height: 200, // Adjust the height as needed
+              height: 340, // Adjust the height as needed
               child: ListView.builder(
                 scrollDirection: Axis.horizontal,
                 itemCount: featuredGames.length + 1,
@@ -121,7 +121,7 @@ class _HomePageState extends State<HomePage> {
             ),
             //special offer
             SizedBox(
-              height: 250, // Adjust the height as needed
+              height: 500, // Adjust the height as needed
               child: ListView.builder(
                 scrollDirection: Axis.horizontal,
                 itemCount: specialOfferGames.length + 1,
@@ -136,11 +136,17 @@ class _HomePageState extends State<HomePage> {
                     }
                   }
                   final game = specialOfferGames[index];
-                  return Special(
-                    imageUrl: game['background_image'],
-                    name: game['name'],
-                    originalPrice: game['price'],
-                  );
+                  // Check if the price is greater than 0 before displaying the game
+                  if (game['price'] > 0) {
+                    return Special(
+                      imageUrl: game['background_image'],
+                      name: game['name'],
+                      originalPrice: game['price'],
+                    );
+                  } else {
+                    // Return an empty container if the price is 0, menghindari game gratis di diskon
+                    return Container();
+                  }
                 },
               ),
             ),

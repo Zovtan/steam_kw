@@ -16,13 +16,32 @@ class Special extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Container(
-        width: 200, // Adjust the width of each item as needed
+        width: 400, // Adjust the width of each item as needed
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: [
+              Colors.black,
+              Colors.black,
+              Color(0xFF1E3655)
+            ], // dari atas bawah
+          ),
+          boxShadow: [
+            BoxShadow(
+              color: const Color.fromARGB(255, 0, 0, 0).withOpacity(0.5),
+              spreadRadius: 1,
+              blurRadius: 10,
+              offset: Offset(0, 0), // changes position of shadow
+            ),
+          ],
+        ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Container(
-              height: 100,
-              width: 100,
+              height: 250,
+              width: 400,
               decoration: BoxDecoration(
                 image: DecorationImage(
                   image: NetworkImage(imageUrl),
@@ -31,19 +50,31 @@ class Special extends StatelessWidget {
                 borderRadius: BorderRadius.circular(8.0),
               ),
             ),
-            Text(
-              name,
-              style: TextStyle(fontWeight: FontWeight.bold),
-              maxLines: 2,
-              overflow: TextOverflow.ellipsis,
+            SizedBox(height: 8),
+            Padding(
+              padding: const EdgeInsets.only(left: 8.0),
+              child: Text(
+                name,
+                style:
+                    TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
+              ),
             ),
-            Text(
-              'Original Price: $originalPrice', // Display the original price
-              style: TextStyle(decoration: TextDecoration.lineThrough, color: Colors.grey),
+            SizedBox(
+              height: 10,
             ),
-            Text(
-              'Discounted Price: ${discountedPrice.toStringAsFixed(2)}', // Display the discounted price
-              style: TextStyle(color: Colors.green),
+            Padding(
+              padding: const EdgeInsets.only(left: 16.0),
+              child: Text(
+                'Original Price: $originalPrice', // Display the original price
+                style: TextStyle(decoration: TextDecoration.lineThrough, color: Colors.grey),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(left: 16.0),
+              child: Text(
+                'Discounted Price: ${discountedPrice.toStringAsFixed(2)}', // Display the discounted price
+                style: TextStyle(color: Colors.green),
+              ),
             ),
           ],
         ),
