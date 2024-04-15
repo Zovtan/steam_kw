@@ -5,7 +5,7 @@ class BottomNavBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return BottomNavigationBar(
       type: BottomNavigationBarType.fixed, //harus pakai ini kalo mau ganti warna
-      backgroundColor: Color.fromRGBO(30, 33, 41, 1),
+      backgroundColor: const Color.fromRGBO(30, 33, 41, 1),
       items: const <BottomNavigationBarItem>[
         BottomNavigationBarItem(
           icon: Icon(Icons.local_offer),
@@ -32,7 +32,7 @@ class BottomNavBar extends StatelessWidget {
 showUnselectedLabels: false,
       unselectedItemColor: Colors.white,
       selectedItemColor:
-          Color.fromRGBO(37, 157, 253, 1), // Change color as needed
+          const Color.fromRGBO(37, 157, 253, 1),
     );
   }
 }

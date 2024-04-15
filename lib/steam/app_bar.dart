@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class SteamAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Size get preferredSize =>
-      Size.fromHeight(100); // Increased height to accommodate margin
+      const Size.fromHeight(100); // tinggi appbar
 
   @override
   Widget build(BuildContext context) {
@@ -11,7 +11,7 @@ class SteamAppBar extends StatelessWidget implements PreferredSizeWidget {
       preferredSize: preferredSize,
       child: Container(
         padding: EdgeInsets.only(top: MediaQuery.of(context).padding.top),
-        color: Color.fromRGBO(30, 33, 41, 1),
+        color: const Color.fromRGBO(30, 33, 41, 1),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
@@ -23,7 +23,7 @@ class SteamAppBar extends StatelessWidget implements PreferredSizeWidget {
                 children: [
                   Expanded(
                     child: Container(
-                      padding: EdgeInsets.symmetric(horizontal: 16),
+                      padding: const EdgeInsets.symmetric(horizontal: 16),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(8),
                         color: const Color.fromRGBO(40, 44, 49, 1),
@@ -38,7 +38,7 @@ class SteamAppBar extends StatelessWidget implements PreferredSizeWidget {
                           Expanded(
                             //bar search
                             child: TextField(
-                              decoration: InputDecoration(
+                              decoration: const InputDecoration(
                                 border: InputBorder.none,
                               ),
                               onChanged: (value) {
@@ -47,13 +47,13 @@ class SteamAppBar extends StatelessWidget implements PreferredSizeWidget {
                             ),
                           ),
                           //search icon
-                          Icon(Icons.search, color: Colors.grey),
+                          const Icon(Icons.search, color: Colors.grey),
                         ],
                       ),
                     ),
                   ),
                   //setting icon
-                  Icon(Icons.more_vert, color: Colors.grey),
+                  const Icon(Icons.more_vert, color: Colors.grey),
                   //pfp
                   Image.asset(
                     "images/pfp.png",
@@ -77,7 +77,7 @@ class SteamAppBar extends StatelessWidget implements PreferredSizeWidget {
                       ),
                       Icon(
                         Icons
-                            .keyboard_arrow_down_outlined, // Adding dropdown icon for "MENU"
+                            .keyboard_arrow_down_outlined,
                         color: Colors.white,
                       )
                     ],
@@ -86,10 +86,10 @@ class SteamAppBar extends StatelessWidget implements PreferredSizeWidget {
                   Row(
                     children: [
                       Text(
-                        "WALLET ", // Changing wallet amount to green
+                        "WALLET ",
                         style: TextStyle(
                             color:
-                                Colors.white), // Changing text color to green
+                                Colors.white),
                       ),
                       Text("(RP 123 456)",
                           style: TextStyle(color: Color.fromRGBO(37, 157, 253, 1)))

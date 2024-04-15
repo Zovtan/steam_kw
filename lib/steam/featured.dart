@@ -5,16 +5,16 @@ class Featured extends StatelessWidget {
   final String name;
   final int price;
 
-  Featured({required this.imageUrl, required this.name, required this.price});
+  const Featured({required this.imageUrl, required this.name, required this.price});
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Container(
-        width: 400, // Adjust the width of each item as needed
+        width: 400,
         decoration: BoxDecoration(
-          gradient: LinearGradient(
+          gradient: const LinearGradient(
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
             colors: [
@@ -28,7 +28,7 @@ class Featured extends StatelessWidget {
               color: const Color.fromARGB(255, 0, 0, 0).withOpacity(0.5),
               spreadRadius: 1,
               blurRadius: 10,
-              offset: Offset(0, 0), // changes position of shadow
+              offset: const Offset(0, 0),
             ),
           ],
         ),
@@ -46,23 +46,23 @@ class Featured extends StatelessWidget {
                 borderRadius: BorderRadius.circular(8.0),
               ),
             ),
-            SizedBox(height: 8),
+            const SizedBox(height: 8),
             Padding(
               padding: const EdgeInsets.only(left: 8.0),
               child: Text(
                 name,
                 style:
-                    TextStyle(fontWeight: FontWeight.bold, color: Colors.white, fontSize: 16),
+                    const TextStyle(fontWeight: FontWeight.bold, color: Colors.white, fontSize: 16),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             Padding(
               padding: const EdgeInsets.only(left: 16.0),
               child: Text(
                 price == 0 ? "Free" : "Rp $price",
-                style: TextStyle(color: Colors.white,),
+                style: const TextStyle(color: Colors.white,),
               ),
             ),
           ],

@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:steam_kw/steam/special.dart';
 import 'dart:convert';
-import 'app_bar.dart'; // Import the app_bar.dart file
-import '../util/random_price.dart'; // Import the price generator function
-import 'featured.dart'; // Import the Featured widget
-import 'bottom_nav_bar.dart'; // Import the BottomNavBar widget
+import 'app_bar.dart';
+import '../util/random_price.dart';
+import 'featured.dart';
+import 'bottom_nav_bar.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -69,17 +69,17 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 32, 58, 92),
+      backgroundColor: const Color.fromARGB(255, 32, 58, 92),
       appBar: SteamAppBar(),
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment:
-              CrossAxisAlignment.start, // Align children to the start (left)
+              CrossAxisAlignment.start,
           children: [
             Image.asset(
               'images/banner_square.png',
               fit: BoxFit.cover,
-              width: double.infinity, // Take the full width of the screen
+              width: double.infinity,
             ),
             const SizedBox(
               height: 16,
@@ -91,7 +91,7 @@ class _HomePageState extends State<HomePage> {
             ),
             // Featured items
             SizedBox(
-              height: 340, // Adjust the height as needed
+              height: 340,
               child: ListView.builder(
                 scrollDirection: Axis.horizontal,
                 itemCount: featuredGames.length + 1,
@@ -121,7 +121,7 @@ class _HomePageState extends State<HomePage> {
             ),
             //special offer
             SizedBox(
-              height: 350, // Adjust the height as needed
+              height: 350,
               child: ListView.builder(
                 scrollDirection: Axis.horizontal,
                 itemCount: specialOfferGames.length + 1,

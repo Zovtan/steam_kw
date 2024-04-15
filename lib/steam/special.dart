@@ -6,7 +6,7 @@ class Special extends StatelessWidget {
   final String name;
   final int originalPrice;
 
-  Special(
+  const Special(
       {required this.imageUrl,
       required this.name,
       required this.originalPrice});
@@ -67,18 +67,18 @@ class Special extends StatelessWidget {
                 borderRadius: BorderRadius.circular(8.0),
               ),
             ),
-            SizedBox(height: 8),
+            const SizedBox(height: 8),
             Padding(
               padding: const EdgeInsets.only(left: 8.0),
               child: Text(
                 name,
-                style: TextStyle(
+                style: const TextStyle(
                     fontWeight: FontWeight.bold,
                     color: Colors.white,
                     fontSize: 16),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             Padding(
@@ -87,24 +87,24 @@ class Special extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Container(
-                    color: Color(0xFF4D693D),
-                    padding: EdgeInsets.symmetric(vertical: 2, horizontal: 6),
+                    color: const Color(0xFF4D693D),
+                    padding: const EdgeInsets.symmetric(vertical: 2, horizontal: 6),
                     child: Text(
                       '-$formattedPercentage%',
-                      style: TextStyle(
+                      style: const TextStyle(
                           color: Color(0xFF9FC853),
                           fontWeight: FontWeight.bold,
                           fontSize: 20),
                     ),
                   ),
                   Container(
-                    color: Color(0xFF364A55),
-                    padding: EdgeInsets.all(6.5),
+                    color: const Color(0xFF364A55),
+                    padding: const EdgeInsets.all(6.5),
                     child: Row(
                       children: [
                         Text(
                           'Rp $originalPrice ',
-                          style: TextStyle(
+                          style: const TextStyle(
                             decoration: TextDecoration.lineThrough,
                             decorationColor: Color(0xFF687B89),
                             color: Color(0xFF687B89),
@@ -114,7 +114,7 @@ class Special extends StatelessWidget {
                         ),
                         Text(
                           'Rp ${discountedPrice.toStringAsFixed(2)}',
-                          style: TextStyle(color: Color(0xFF9FC853)),
+                          style: const TextStyle(color: Color(0xFF9FC853)),
                         ),
                       ],
                     ),

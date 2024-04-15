@@ -1,11 +1,10 @@
 import 'dart:math';
 
-// Function to generate a random price
 int generateRandomPrice() {
-  const int minPrice = 100000; // Minimum price
-  const int maxPrice = 600000; // Maximum price
-  const int increment = 5000; // Price increment
-  const double freeChance = 0.10; // 10% chance of being free
+  const int minPrice = 100000;
+  const int maxPrice = 600000;
+  const int increment = 5000;
+  const double freeChance = 0.10;
 
   // Calculate the range of possible prices
   int range = ((maxPrice - minPrice) / increment).floor();
