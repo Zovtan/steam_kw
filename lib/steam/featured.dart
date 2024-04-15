@@ -52,7 +52,7 @@ class Featured extends StatelessWidget {
               child: Text(
                 name,
                 style:
-                    TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
+                    TextStyle(fontWeight: FontWeight.bold, color: Colors.white, fontSize: 16),
               ),
             ),
             SizedBox(
@@ -62,7 +62,7 @@ class Featured extends StatelessWidget {
               padding: const EdgeInsets.only(left: 16.0),
               child: Text(
                 price == 0 ? "Free" : "Rp $price",
-                style: TextStyle(color: Colors.white),
+                style: TextStyle(color: Colors.white,),
               ),
             ),
           ],

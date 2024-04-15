@@ -99,7 +99,7 @@ class _HomePageState extends State<HomePage> {
                   if (index == featuredGames.length) {
                     if (_loading) {
                       return const Center(
-                        child: CircularProgressIndicator(),
+                        child: CircularProgressIndicator(color: Color.fromRGBO(37, 157, 253, 1),),
                       );
                     } else {
                       return Container();
@@ -121,7 +121,7 @@ class _HomePageState extends State<HomePage> {
             ),
             //special offer
             SizedBox(
-              height: 500, // Adjust the height as needed
+              height: 350, // Adjust the height as needed
               child: ListView.builder(
                 scrollDirection: Axis.horizontal,
                 itemCount: specialOfferGames.length + 1,
@@ -129,7 +129,7 @@ class _HomePageState extends State<HomePage> {
                   if (index == specialOfferGames.length) {
                     if (_loading) {
                       return const Center(
-                        child: CircularProgressIndicator(),
+                        child: CircularProgressIndicator(color: Color.fromRGBO(37, 157, 253, 1),),
                       );
                     } else {
                       return Container();

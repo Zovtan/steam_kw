@@ -26,7 +26,7 @@ class SteamAppBar extends StatelessWidget implements PreferredSizeWidget {
                       padding: EdgeInsets.symmetric(horizontal: 16),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(8),
-                        color: const Color.fromRGBO(40,44,49, 1),
+                        color: const Color.fromRGBO(40, 44, 49, 1),
                       ),
                       child: Row(
                         children: [
@@ -69,13 +69,32 @@ class SteamAppBar extends StatelessWidget implements PreferredSizeWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  Text(
-                    "MENU",
-                    style: TextStyle(color: Colors.white),
+                  Row(
+                    children: [
+                      Text(
+                        "MENU",
+                        style: TextStyle(color: Colors.white),
+                      ),
+                      Icon(
+                        Icons
+                            .keyboard_arrow_down_outlined, // Adding dropdown icon for "MENU"
+                        color: Colors.white,
+                      )
+                    ],
                   ),
                   Text("WISHLIST", style: TextStyle(color: Colors.white)),
-                  Text("WALLET (RP 123 453)",
-                      style: TextStyle(color: Colors.white))
+                  Row(
+                    children: [
+                      Text(
+                        "WALLET ", // Changing wallet amount to green
+                        style: TextStyle(
+                            color:
+                                Colors.white), // Changing text color to green
+                      ),
+                      Text("(RP 123 456)",
+                          style: TextStyle(color: Color.fromRGBO(37, 157, 253, 1)))
+                    ],
+                  ),
                 ],
               ),
             )

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'steam/home_page.dart'; // Assuming the home_page.dart is in the steam folder
+import 'steam/home_page.dart';
 
 void main() {
   runApp(MyApp());
