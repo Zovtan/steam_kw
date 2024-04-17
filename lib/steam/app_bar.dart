@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'profile_screen.dart';
 
 class SteamAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
@@ -54,12 +55,23 @@ class SteamAppBar extends StatelessWidget implements PreferredSizeWidget {
                   ),
                   //setting icon
                   const Icon(Icons.more_vert, color: Colors.grey),
-                  //pfp
-                  Image.asset(
-                    "images/pfp.png",
-                    width: 60,
-                    height: 60,
-                  )
+                  //pfp with navigation
+                  GestureDetector(
+                    onTap: () {
+                      // Navigate to profile screen
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => ProfileScreen(),
+                        ),
+                      );
+                    },
+                    child: Image.asset(
+                      "images/pfp.png",
+                      width: 60,
+                      height: 60,
+                    ),
+                  ),
                 ],
               ),
             ),
@@ -76,8 +88,7 @@ class SteamAppBar extends StatelessWidget implements PreferredSizeWidget {
                         style: TextStyle(color: Colors.white),
                       ),
                       Icon(
-                        Icons
-                            .keyboard_arrow_down_outlined,
+                        Icons.keyboard_arrow_down_outlined,
                         color: Colors.white,
                       )
                     ],
@@ -87,12 +98,12 @@ class SteamAppBar extends StatelessWidget implements PreferredSizeWidget {
                     children: [
                       Text(
                         "WALLET ",
-                        style: TextStyle(
-                            color:
-                                Colors.white),
+                        style: TextStyle(color: Colors.white),
                       ),
-                      Text("(RP 123 456)",
-                          style: TextStyle(color: Color.fromRGBO(37, 157, 253, 1)))
+                      Text(
+                        "(RP 123 456)",
+                        style: TextStyle(color: Color.fromRGBO(37, 157, 253, 1)),
+                      )
                     ],
                   ),
                 ],
